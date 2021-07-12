@@ -34,10 +34,14 @@ class ListItemViewModel : ViewModel() {
         return _mutableLiveData.value!!
     }
 
-    fun incrementClicks(position: Int){
-        val item = _mutableLiveData.value?.get(position)
-        item!!.clicks ++
-        _mutableLiveData.value = itemList
+    fun incrementClicks(position: Int): Boolean{
+        try{
+            (_mutableLiveData.value)!![position].clicks++
+            return true
+        }catch(exception : Exception){
+            return false
+        }
+
     }
 
 }
